@@ -58,7 +58,7 @@ def main():
             temp_max = "{:10.2f}".format(float(conditions_data['main']['temp_max']) + zero_c)
 
             # icon = str(conditions_data[u'current_observation'][u'icon'])
-            humidity = conditions_data['main'][humidity]
+            humidity = conditions_data['main']['humidity']
             wind = str(conditions_data['wind']['speed'])
             wind_dir = str(conditions_data['wind']['deg'])
             # gust = str(conditions_data[u'current_observation'][u'wind_gust_kph'])
