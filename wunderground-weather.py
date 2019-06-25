@@ -1,4 +1,3 @@
-import datetime
 import json
 import os
 import subprocess
@@ -11,12 +10,7 @@ from oled.serial import i2c
 
 serial = i2c(port=1, address=0x3c)
 device = ssd1306(serial)
-ttf = '/usr/share/fonts/truetype/freefont/FreeSerifBold.ttf'
-font60 = ImageFont.truetype(ttf, 60)
-font42 = ImageFont.truetype(ttf, 42)
-font36 = ImageFont.truetype(ttf, 36)
-font20 = ImageFont.truetype(ttf, 20)
-font12 = ImageFont.truetype(ttf, 12)
+
 delay = 1
 zero_c = -273.15
 
@@ -32,11 +26,18 @@ def displayTemp(temp, temp_low, temp_high):
 
 def main():
     print("Weather station started")
+    basedir = os.path.dirname(os.path.realpath(__file__))
+    updateFile = os.path.join(basedir, 'update_tick')
+    icondir = os.path.join(basedir, 'icons')
+    ttf = os.path.join(os.path.join(basedir, 'font'), 'FreeSerifBold.ttf')
 
+    font60 = ImageFont.truetype(ttf, 60)
+    font42 = ImageFont.truetype(ttf, 42)
+    font36 = ImageFont.truetype(ttf, 36)
+    font20 = ImageFont.truetype(ttf, 20)
+    font12 = ImageFont.truetype(ttf, 12)
     while True:
-        basedir = os.path.dirname(os.path.realpath(__file__))
-        updateFile = os.path.join(basedir, 'update_tick')
-        icondir = os.path.join(basedir, 'icons')
+
         try:
             if os.path.isfile(updateFile):
                 print("Update file found, calling weather-update")
