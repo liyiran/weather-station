@@ -13,6 +13,17 @@ device = ssd1306(serial)
 
 delay = 1
 zero_c = -273.15
+print("Weather station started")
+basedir = os.path.dirname(os.path.realpath(__file__))
+updateFile = os.path.join(basedir, 'update_tick')
+icondir = os.path.join(basedir, 'icons')
+ttf = os.path.join(os.path.join(basedir, 'font'), 'FreeSerifBold.ttf')
+
+font60 = ImageFont.truetype(ttf, 60)
+font42 = ImageFont.truetype(ttf, 42)
+font36 = ImageFont.truetype(ttf, 36)
+font20 = ImageFont.truetype(ttf, 20)
+font12 = ImageFont.truetype(ttf, 12)
 
 
 def displayTemp(temp, temp_low, temp_high):
@@ -25,17 +36,6 @@ def displayTemp(temp, temp_low, temp_high):
 
 
 def main():
-    print("Weather station started")
-    basedir = os.path.dirname(os.path.realpath(__file__))
-    updateFile = os.path.join(basedir, 'update_tick')
-    icondir = os.path.join(basedir, 'icons')
-    ttf = os.path.join(os.path.join(basedir, 'font'), 'FreeSerifBold.ttf')
-
-    font60 = ImageFont.truetype(ttf, 60)
-    font42 = ImageFont.truetype(ttf, 42)
-    font36 = ImageFont.truetype(ttf, 36)
-    font20 = ImageFont.truetype(ttf, 20)
-    font12 = ImageFont.truetype(ttf, 12)
     while True:
 
         try:
@@ -135,7 +135,7 @@ def main():
         except:
             with canvas(device) as drawError:
                 drawError.text((0, 0), "Error!", font=font20, fill=255)
-                drawError.text((0, 40), time.strftime('%H:%M', time.localtime(epoch)), font=font20, fill=255)
+                # drawError.text((0, 40), time.strftime('%H:%M', time.localtime(epoch)), font=font20, fill=255)
             os.mknod(updateFile)
             time.sleep(30)
 
