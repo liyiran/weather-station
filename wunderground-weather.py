@@ -132,7 +132,8 @@ def main():
             #     now = datetime.datetime.now()
             #     drawTime.text((10, 8), "%02d" % now.hour + ":" + "%02d" % now.minute, font=font42, fill=255)
             # time.sleep(delay)
-        except:
+        except Exception as e:
+            print(e)
             with canvas(device) as drawError:
                 drawError.text((0, 0), "Error!", font=font20, fill=255)
                 # drawError.text((0, 40), time.strftime('%H:%M', time.localtime(epoch)), font=font20, fill=255)
