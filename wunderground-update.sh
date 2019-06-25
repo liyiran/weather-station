@@ -6,10 +6,10 @@ COORD=5392952 # Santa Barbara
 
 curl -s -G \
 	-o ${BASEDIR}/open-weather-conditions-data.json \
-	api.openweathermap.org/data/2.5/weather?id=${COORD}&appid=${KEY}
+	"api.openweathermap.org/data/2.5/weather?id=${COORD}&appid=${KEY}"
 
 sleep 1
 
 curl -s -G \
 	-o ${BASEDIR}/open-weather-forecast-data.json \
-	api.openweathermap.org/data/2.5/forecast?id=${COORD}&appid=${KEY}
+	"api.openweathermap.org/data/2.5/forecast?id=${COORD}&appid=${KEY}"
